@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Build nfl_epg.xml (XMLTV) from ESPN's public scoreboard + your IPTV playlist.
+"""Build nfl_epg.xml (XMLTV) from ESPN's public scoreboard + your IPTV playlist,
+plus a matchup image (both team logos) for every game.
 
 Env vars:
-  M3U_URL   your provider playlist URL (keep it as a GitHub secret). Used to find
-            channels like "USA NFL Sunday 705: Team vs Team" and their tvg-id.
-  EPG_TZ    output time zone (default America/Denver, handles MDT/MST automatically)
-  EPG_DAYS  days ahead to include (default 9)
-  EPG_OUT   output file (default nfl_epg.xml)
+  M3U_URL        your provider playlist URL (keep it as a GitHub secret)
+  EPG_TZ         output time zone (default America/Denver)
+  EPG_DAYS       days ahead to include (default 9)
+  EPG_OUT        output file (default nfl_epg.xml)
+  ICON_BASE_URL  public base URL of the repo's raw files, ending in "/".
+                 Auto-detected inside GitHub Actions.
 """
-import json, os, re, sys, urllib.error, urllib.request
+import io, json, os, re, shutil, sys, urllib.error, urllib.request
 from datetime import datetime, timedelta
 from xml.sax.saxutils import escape
 from zoneinfo import ZoneInfo
@@ -19,18 +21,23 @@ OUT = os.environ.get("EPG_OUT", "nfl_epg.xml")
 DURATION = timedelta(hours=3, minutes=30)
 ESPN = ("https://site.api.espn.com/apis/site/v2/sports/football/nfl/"
         "scoreboard?dates={day}")
+LOGO_FALLBACK = "https://a.espncdn.com/i/teamlogos/nfl/500/{abbr}.png"
 
 
-def fetch(url, label):
+def fetch_bytes(url, label):
     """Fetch a URL; on failure say WHICH request failed (never print the playlist URL)."""
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 nfl-epg/1.0"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
-            return r.read().decode("utf-8", "replace")
+            return r.read()
     except urllib.error.HTTPError as e:
         raise RuntimeError(f"{label} request failed: HTTP {e.code} {e.reason}") from None
     except Exception as e:
         raise RuntimeError(f"{label} request failed: {type(e).__name__}") from None
+
+
+def fetch(url, label):
+    return fetch_bytes(url, label).decode("utf-8", "replace")
 
 
 def parse_games(data):
@@ -41,16 +48,21 @@ def parse_games(data):
             continue
         seen.add(key)
         comp = ev["competitions"][0]
-        teams = {c["homeAway"]: c["team"]["displayName"] for c in comp["competitors"]}
+        t = {c["homeAway"]: c["team"] for c in comp["competitors"]}
         start = datetime.fromisoformat(ev["date"].replace("Z", "+00:00"))
         nets = [n for b in comp.get("broadcasts", []) for n in b.get("names", [])]
-        games.append({"away": teams["away"], "home": teams["home"],
-                      "start": start, "networks": nets})
+        g = {"start": start, "networks": nets}
+        for side in ("away", "home"):
+            abbr = (t[side].get("abbreviation") or t[side]["displayName"][:3]).lower()
+            g[side] = t[side]["displayName"]
+            g[f"{side}_abbr"] = abbr
+            g[f"{side}_logo"] = t[side].get("logo") or LOGO_FALLBACK.format(abbr=abbr)
+        games.append(g)
     return sorted(games, key=lambda g: g["start"])
 
 
 def get_games():
-    """One request per day (ESPN's documented single-date form) instead of a date range."""
+    """One request per day (ESPN's documented single-date form)."""
     today = datetime.now(TZ).date()
     events = []
     for offset in range(-1, DAYS_AHEAD + 1):
@@ -99,14 +111,88 @@ def channel_for(game, channels):
     return None
 
 
+# ---- matchup images ---------------------------------------------------------
+def icon_base():
+    base = os.environ.get("ICON_BASE_URL", "").strip()
+    if not base and os.environ.get("GITHUB_REPOSITORY"):
+        branch = os.environ.get("GITHUB_REF_NAME", "main")
+        base = f"https://raw.githubusercontent.com/{os.environ['GITHUB_REPOSITORY']}/{branch}/"
+    return base if not base or base.endswith("/") else base + "/"
+
+
+def _font(size):
+    from PIL import ImageFont
+    for p in ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+              "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf"):
+        try:
+            return ImageFont.truetype(p, size)
+        except OSError:
+            pass
+    try:
+        return ImageFont.load_default(size)
+    except TypeError:
+        return ImageFont.load_default()
+
+
+def make_matchup(g, path, cache):
+    from PIL import Image, ImageDraw
+    W, H, BOX = 1280, 720, 440
+    img = Image.new("RGB", (W, H), (16, 18, 24))
+    d = ImageDraw.Draw(img)
+    for side, cx in (("away", 330), ("home", 950)):
+        url = g[f"{side}_logo"]
+        if url not in cache:
+            cache[url] = Image.open(io.BytesIO(fetch_bytes(url, f"logo {g[side + '_abbr']}"))).convert("RGBA")
+        logo = cache[url].copy()
+        logo.thumbnail((BOX, BOX))
+        img.paste(logo, (cx - logo.width // 2, 300 - logo.height // 2), logo)
+        d.text((cx, 600), g[f"{side}_abbr"].upper(), font=_font(84), fill=(255, 255, 255), anchor="mm")
+    d.text((640, 290), "@", font=_font(150), fill=(200, 205, 215), anchor="mm")
+    img.save(path, "PNG", optimize=True)
+
+
+def make_icons(games, channels):
+    """Writes icons/matchups/*.png + icons/channels/*.png and sets g['icon'] / g['chan_icon']."""
+    base = icon_base()
+    if not base:
+        print("No ICON_BASE_URL / GitHub repo detected: skipping images")
+        return
+    try:
+        import PIL  # noqa: F401
+    except ImportError:
+        print("Pillow not installed: skipping images")
+        return
+    shutil.rmtree("icons", ignore_errors=True)
+    os.makedirs("icons/matchups")
+    os.makedirs("icons/channels")
+    cache, done = {}, set()
+    for g in games:
+        try:
+            name = f"{g['start']:%Y%m%d}_{g['away_abbr']}_{g['home_abbr']}"
+            path = f"icons/matchups/{name}.png"
+            make_matchup(g, path, cache)
+            g["icon"] = f"{base}{path}"
+            ch = channel_for(g, channels)
+            if ch and ch["id"] not in done:
+                slug = re.sub(r"[^A-Za-z0-9]+", "_", ch["id"]).strip("_").lower()
+                cpath = f"icons/channels/{slug}.png"
+                shutil.copyfile(path, cpath)
+                g["chan_icon"] = f"{base}{cpath}?v={name}"  # ?v= busts app caches each week
+                done.add(ch["id"])
+        except Exception as e:  # one bad logo must not break the guide
+            print(f"Image skipped for {g['away']} at {g['home']}: {e}")
+
+
 # ---- XMLTV ----------------------------------------------------------------
 def build_xml(games, channels):
-    chan_defs, progs, busy = {}, [], []   # busy: end times of fallback channels
+    chan_defs, chan_icons, progs, busy = {}, {}, [], []
     for g in games:
         ch = channel_for(g, channels)
         if ch:
             cid = ch["id"]
             chan_defs.setdefault(cid, [ch["prefix"], ch["name"]])
+            if g.get("chan_icon"):
+                chan_icons.setdefault(cid, g["chan_icon"])
         else:  # no matching provider channel: spread across generic channels
             for i, end in enumerate(busy):
                 if end <= g["start"]:
@@ -117,6 +203,8 @@ def build_xml(games, channels):
                 i = len(busy) - 1
             cid = f"NFL.Game{i + 1}"
             chan_defs.setdefault(cid, [f"NFL Game {i + 1}"])
+            if g.get("icon"):
+                chan_icons.setdefault(cid, g["icon"])
         progs.append((cid, g))
 
     fmt = lambda d: d.astimezone(TZ).strftime("%Y%m%d%H%M%S %z")
@@ -124,7 +212,8 @@ def build_xml(games, channels):
          '<tv generator-info-name="nfl-epg">']
     for cid, names in sorted(chan_defs.items()):
         dn = "".join(f"<display-name>{escape(n)}</display-name>" for n in dict.fromkeys(names))
-        o.append(f'  <channel id="{escape(cid)}">{dn}</channel>')
+        ic = f'<icon src="{escape(chan_icons[cid])}"/>' if cid in chan_icons else ""
+        o.append(f'  <channel id="{escape(cid)}">{dn}{ic}</channel>')
     for cid, g in sorted(progs, key=lambda p: (p[1]["start"], p[0])):
         desc = f'{g["away"]} at {g["home"]}. NFL regular season.'
         if g["networks"]:
@@ -132,8 +221,10 @@ def build_xml(games, channels):
         o += [f'  <programme start="{fmt(g["start"])}" stop="{fmt(g["start"] + DURATION)}" channel="{escape(cid)}">',
               f'    <title lang="en">NFL Football: {escape(g["away"])} at {escape(g["home"])}</title>',
               f'    <desc lang="en">{escape(desc)}</desc>',
-              '    <category lang="en">Sports</category><category lang="en">Football</category>',
-              '    <new/>', '  </programme>']
+              '    <category lang="en">Sports</category><category lang="en">Football</category>']
+        if g.get("icon"):
+            o.append(f'    <icon src="{escape(g["icon"])}"/>')
+        o += ['    <new/>', '  </programme>']
     o.append("</tv>")
     return "\n".join(o) + "\n"
 
@@ -150,9 +241,9 @@ def main():
         print(f"Found {len(channels)} NFL channels in playlist")
     else:
         print("M3U_URL not set: using generic NFL Game channels")
-    xml = build_xml(games, channels)
+    make_icons(games, channels)
     with open(OUT, "w", encoding="utf-8") as f:
-        f.write(xml)
+        f.write(build_xml(games, channels))
     print(f"Wrote {OUT}: {len(games)} games")
 
 
