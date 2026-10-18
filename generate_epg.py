@@ -18,7 +18,7 @@ DAYS_AHEAD = int(os.environ.get("EPG_DAYS", "9"))
 OUT = os.environ.get("EPG_OUT", "nfl_epg.xml")
 DURATION = timedelta(hours=3, minutes=30)
 ESPN = ("https://site.api.espn.com/apis/site/v2/sports/football/nfl/"
-        "scoreboard?dates={a}-{b}&limit=100")
+        "scoreboard?dates={day}")
 
 
 def fetch(url, label):
@@ -34,8 +34,12 @@ def fetch(url, label):
 
 
 def parse_games(data):
-    games = []
+    games, seen = [], set()
     for ev in data.get("events", []):
+        key = ev.get("id") or (ev["date"], ev.get("name"))
+        if key in seen:
+            continue
+        seen.add(key)
         comp = ev["competitions"][0]
         teams = {c["homeAway"]: c["team"]["displayName"] for c in comp["competitors"]}
         start = datetime.fromisoformat(ev["date"].replace("Z", "+00:00"))
@@ -46,10 +50,14 @@ def parse_games(data):
 
 
 def get_games():
+    """One request per day (ESPN's documented single-date form) instead of a date range."""
     today = datetime.now(TZ).date()
-    a = (today - timedelta(days=1)).strftime("%Y%m%d")
-    b = (today + timedelta(days=DAYS_AHEAD)).strftime("%Y%m%d")
-    return parse_games(json.loads(fetch(ESPN.format(a=a, b=b), "ESPN schedule")))
+    events = []
+    for offset in range(-1, DAYS_AHEAD + 1):
+        day = (today + timedelta(days=offset)).strftime("%Y%m%d")
+        data = json.loads(fetch(ESPN.format(day=day), f"ESPN schedule ({day})"))
+        events += data.get("events", [])
+    return parse_games({"events": events})
 
 
 # ---- playlist -------------------------------------------------------------
