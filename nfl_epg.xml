@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv generator-info-name="nfl-epg">
+  <channel id="NFL.Game1"><display-name>NFL Game 1</display-name></channel>
+  <channel id="NFL.Game10"><display-name>NFL Game 10</display-name></channel>
+  <channel id="NFL.Game2"><display-name>NFL Game 2</display-name></channel>
+  <channel id="NFL.Game3"><display-name>NFL Game 3</display-name></channel>
+  <channel id="NFL.Game4"><display-name>NFL Game 4</display-name></channel>
+  <channel id="NFL.Game5"><display-name>NFL Game 5</display-name></channel>
+  <channel id="NFL.Game6"><display-name>NFL Game 6</display-name></channel>
+  <channel id="NFL.Game7"><display-name>NFL Game 7</display-name></channel>
+  <channel id="NFL.Game8"><display-name>NFL Game 8</display-name></channel>
+  <channel id="NFL.Game9"><display-name>NFL Game 9</display-name></channel>
+  <channel id="USA.NFL.Sunday.705"><display-name>USA NFL Sunday 705</display-name><display-name>USA NFL Sunday 705: New York Jets vs New England Patriots @ 01:00 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.706"><display-name>USA NFL Sunday 706</display-name><display-name>USA NFL Sunday 706: Carolina Panthers vs Philadelphia Eagles @ 01:00 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.707"><display-name>USA NFL Sunday 707</display-name><display-name>USA NFL Sunday 707: Pittsburgh Steelers vs Tampa Bay Buccaneers @ 01:00 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.708"><display-name>USA NFL Sunday 708</display-name><display-name>USA NFL Sunday 708: Chicago Bears vs Atlanta Falcons @ 01:00 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.709"><display-name>USA NFL Sunday 709</display-name><display-name>USA NFL Sunday 709: Baltimore Ravens vs Cleveland Browns @ 01:00 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.710"><display-name>USA NFL Sunday 710</display-name><display-name>USA NFL Sunday 710: Tennessee Titans vs Indianapolis Colts @ 01:00 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.711"><display-name>USA NFL Sunday 711</display-name><display-name>USA NFL Sunday 711: New Orleans Saints vs New York Giants @ 01:00 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.712"><display-name>USA NFL Sunday 712</display-name><display-name>USA NFL Sunday 712: Arizona Cardinals vs Los Angeles Rams @ 04:05 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.713"><display-name>USA NFL Sunday 713</display-name><display-name>USA NFL Sunday 713: Los Angeles Chargers vs Kansas City Chiefs @ @ 04:25 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.714"><display-name>USA NFL Sunday 714</display-name><display-name>USA NFL Sunday 714: Buffalo Bills vs Las Vegas Raiders @ 04:25 PM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.715"><display-name>USA NFL Sunday 715</display-name><display-name>USA NFL Sunday 715: Houston Texans vs Jacksonville Jaguars @ 09:30 AM EDT</display-name></channel>
+  <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night: Dallas Cowboys vs Green Bay Packers @ 8:20 PM EDT</display-name></channel>
+  <programme start="20261018073000 -0600" stop="20261018110000 -0600" channel="USA.NFL.Sunday.715">
+    <title lang="en">NFL Football: Houston Texans at Jacksonville Jaguars</title>
+    <desc lang="en">Houston Texans at Jacksonville Jaguars. NFL regular season. Broadcast: NFL Net.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="USA.NFL.Sunday.705">
+    <title lang="en">NFL Football: New York Jets at New England Patriots</title>
+    <desc lang="en">New York Jets at New England Patriots. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="USA.NFL.Sunday.706">
+    <title lang="en">NFL Football: Carolina Panthers at Philadelphia Eagles</title>
+    <desc lang="en">Carolina Panthers at Philadelphia Eagles. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="USA.NFL.Sunday.707">
+    <title lang="en">NFL Football: Pittsburgh Steelers at Tampa Bay Buccaneers</title>
+    <desc lang="en">Pittsburgh Steelers at Tampa Bay Buccaneers. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="USA.NFL.Sunday.708">
+    <title lang="en">NFL Football: Chicago Bears at Atlanta Falcons</title>
+    <desc lang="en">Chicago Bears at Atlanta Falcons. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="USA.NFL.Sunday.709">
+    <title lang="en">NFL Football: Baltimore Ravens at Cleveland Browns</title>
+    <desc lang="en">Baltimore Ravens at Cleveland Browns. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="USA.NFL.Sunday.710">
+    <title lang="en">NFL Football: Tennessee Titans at Indianapolis Colts</title>
+    <desc lang="en">Tennessee Titans at Indianapolis Colts. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="USA.NFL.Sunday.711">
+    <title lang="en">NFL Football: New Orleans Saints at New York Giants</title>
+    <desc lang="en">New Orleans Saints at New York Giants. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018140500 -0600" stop="20261018173500 -0600" channel="USA.NFL.Sunday.712">
+    <title lang="en">NFL Football: Arizona Cardinals at Los Angeles Rams</title>
+    <desc lang="en">Arizona Cardinals at Los Angeles Rams. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018142500 -0600" stop="20261018175500 -0600" channel="USA.NFL.Sunday.713">
+    <title lang="en">NFL Football: Los Angeles Chargers at Kansas City Chiefs</title>
+    <desc lang="en">Los Angeles Chargers at Kansas City Chiefs. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018142500 -0600" stop="20261018175500 -0600" channel="USA.NFL.Sunday.714">
+    <title lang="en">NFL Football: Buffalo Bills at Las Vegas Raiders</title>
+    <desc lang="en">Buffalo Bills at Las Vegas Raiders. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261018182000 -0600" stop="20261018215000 -0600" channel="USA.NFL.Sunday.Night">
+    <title lang="en">NFL Football: Dallas Cowboys at Green Bay Packers</title>
+    <desc lang="en">Dallas Cowboys at Green Bay Packers. NFL regular season. Broadcast: NBC.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261019181500 -0600" stop="20261019214500 -0600" channel="NFL.Game1">
+    <title lang="en">NFL Football: Washington Commanders at San Francisco 49ers</title>
+    <desc lang="en">Washington Commanders at San Francisco 49ers. NFL regular season. Broadcast: ESPN, ABC.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261022181500 -0600" stop="20261022214500 -0600" channel="NFL.Game1">
+    <title lang="en">NFL Football: New England Patriots at Chicago Bears</title>
+    <desc lang="en">New England Patriots at Chicago Bears. NFL regular season. Broadcast: Prime Video.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025073000 -0600" stop="20261025110000 -0600" channel="NFL.Game1">
+    <title lang="en">NFL Football: Pittsburgh Steelers at New Orleans Saints</title>
+    <desc lang="en">Pittsburgh Steelers at New Orleans Saints. NFL regular season. Broadcast: NFL Net.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025110000 -0600" stop="20261025143000 -0600" channel="NFL.Game1">
+    <title lang="en">NFL Football: San Francisco 49ers at Atlanta Falcons</title>
+    <desc lang="en">San Francisco 49ers at Atlanta Falcons. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025110000 -0600" stop="20261025143000 -0600" channel="NFL.Game2">
+    <title lang="en">NFL Football: Cleveland Browns at Tennessee Titans</title>
+    <desc lang="en">Cleveland Browns at Tennessee Titans. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025110000 -0600" stop="20261025143000 -0600" channel="NFL.Game3">
+    <title lang="en">NFL Football: Indianapolis Colts at Minnesota Vikings</title>
+    <desc lang="en">Indianapolis Colts at Minnesota Vikings. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025110000 -0600" stop="20261025143000 -0600" channel="NFL.Game4">
+    <title lang="en">NFL Football: Miami Dolphins at New York Jets</title>
+    <desc lang="en">Miami Dolphins at New York Jets. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025110000 -0600" stop="20261025143000 -0600" channel="NFL.Game5">
+    <title lang="en">NFL Football: Tampa Bay Buccaneers at Carolina Panthers</title>
+    <desc lang="en">Tampa Bay Buccaneers at Carolina Panthers. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025110000 -0600" stop="20261025143000 -0600" channel="NFL.Game6">
+    <title lang="en">NFL Football: Cincinnati Bengals at Baltimore Ravens</title>
+    <desc lang="en">Cincinnati Bengals at Baltimore Ravens. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025110000 -0600" stop="20261025143000 -0600" channel="NFL.Game7">
+    <title lang="en">NFL Football: New York Giants at Houston Texans</title>
+    <desc lang="en">New York Giants at Houston Texans. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025140500 -0600" stop="20261025173500 -0600" channel="NFL.Game8">
+    <title lang="en">NFL Football: Denver Broncos at Arizona Cardinals</title>
+    <desc lang="en">Denver Broncos at Arizona Cardinals. NFL regular season. Broadcast: CBS.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025142500 -0600" stop="20261025175500 -0600" channel="NFL.Game10">
+    <title lang="en">NFL Football: Los Angeles Rams at Las Vegas Raiders</title>
+    <desc lang="en">Los Angeles Rams at Las Vegas Raiders. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025142500 -0600" stop="20261025175500 -0600" channel="NFL.Game9">
+    <title lang="en">NFL Football: Green Bay Packers at Detroit Lions</title>
+    <desc lang="en">Green Bay Packers at Detroit Lions. NFL regular season. Broadcast: Fox.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261025182000 -0600" stop="20261025215000 -0600" channel="NFL.Game1">
+    <title lang="en">NFL Football: Kansas City Chiefs at Seattle Seahawks</title>
+    <desc lang="en">Kansas City Chiefs at Seattle Seahawks. NFL regular season. Broadcast: NBC.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+  <programme start="20261026181500 -0600" stop="20261026214500 -0600" channel="NFL.Game1">
+    <title lang="en">NFL Football: Dallas Cowboys at Philadelphia Eagles</title>
+    <desc lang="en">Dallas Cowboys at Philadelphia Eagles. NFL regular season. Broadcast: ESPN, ABC, Disney+.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <new/>
+  </programme>
+</tv>
