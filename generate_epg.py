@@ -8,7 +8,7 @@ Env vars:
   EPG_DAYS  days ahead to include (default 9)
   EPG_OUT   output file (default nfl_epg.xml)
 """
-import json, os, re, sys, urllib.request
+import json, os, re, sys, urllib.error, urllib.request
 from datetime import datetime, timedelta
 from xml.sax.saxutils import escape
 from zoneinfo import ZoneInfo
@@ -21,10 +21,16 @@ ESPN = ("https://site.api.espn.com/apis/site/v2/sports/football/nfl/"
         "scoreboard?dates={a}-{b}&limit=100")
 
 
-def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "nfl-epg/1.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read().decode("utf-8", "replace")
+def fetch(url, label):
+    """Fetch a URL; on failure say WHICH request failed (never print the playlist URL)."""
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 nfl-epg/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"{label} request failed: HTTP {e.code} {e.reason}") from None
+    except Exception as e:
+        raise RuntimeError(f"{label} request failed: {type(e).__name__}") from None
 
 
 def parse_games(data):
@@ -43,7 +49,7 @@ def get_games():
     today = datetime.now(TZ).date()
     a = (today - timedelta(days=1)).strftime("%Y%m%d")
     b = (today + timedelta(days=DAYS_AHEAD)).strftime("%Y%m%d")
-    return parse_games(json.loads(fetch(ESPN.format(a=a, b=b))))
+    return parse_games(json.loads(fetch(ESPN.format(a=a, b=b), "ESPN schedule")))
 
 
 # ---- playlist -------------------------------------------------------------
@@ -130,9 +136,9 @@ def main():
         print("No games returned (offseason?). Leaving existing file untouched.")
         return
     channels = []
-    url = os.environ.get("M3U_URL", "").strip()
+    url = os.environ.get("M3U_URL", "").strip().strip("\"'").strip()
     if url:
-        channels = parse_playlist(fetch(url))
+        channels = parse_playlist(fetch(url, "IPTV playlist (M3U_URL secret)"))
         print(f"Found {len(channels)} NFL channels in playlist")
     else:
         print("M3U_URL not set: using generic NFL Game channels")
