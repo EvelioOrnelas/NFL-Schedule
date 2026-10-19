@@ -10,7 +10,7 @@ Env vars:
   ICON_BASE_URL  public base URL of the repo's raw files, ending in "/".
                  Auto-detected inside GitHub Actions.
 """
-import io, json, os, re, shutil, sys, urllib.error, urllib.request
+import hashlib, io, json, os, re, shutil, sys, urllib.error, urllib.request
 from datetime import datetime, timedelta
 from xml.sax.saxutils import escape
 from zoneinfo import ZoneInfo
@@ -76,20 +76,34 @@ def get_games():
 CH = re.compile(r"^(?P<prefix>.*NFL.*?):\s*(?P<a>.+?)\s+(?:vs\.?|at|@)\s+(?P<h>.+)$", re.I)
 
 
+TIME_SUFFIX = re.compile(r"(?:\s*@)+\s*\d{1,2}:\d{2}\s*[AP]M(?:\s+[A-Z]{2,4})?\s*$", re.I)
+SLOT = re.compile(r"(Monday|Thursday|Sunday)\s+Night", re.I)
+EMPTY_SLOT = re.compile(r"^(?P<prefix>.*?NFL\s+(?:Monday|Thursday|Sunday)\s+Night)\s*:?\s*$", re.I)
+
+
 def parse_playlist(text):
-    """Return provider NFL channels: id, prefix, full name, the two team names."""
+    """Provider NFL channels. Channels named with a matchup get matched by teams;
+    primetime channels with an empty matchup ("USA NFL Monday Night:") by day."""
     out = []
     for line in text.splitlines():
         if not line.startswith("#EXTINF"):
             continue
-        name = line.rsplit(",", 1)[-1].strip()
+        name = TIME_SUFFIX.sub("", line.rsplit(",", 1)[-1].strip()).strip()
         m = CH.match(name)
-        if not m:
-            continue
+        if m:
+            prefix, teams = m["prefix"].strip(), (m["a"].strip(), m["h"].strip())
+        else:
+            e = EMPTY_SLOT.match(name)
+            if not e:
+                continue
+            prefix, teams = e["prefix"].strip(), None
+        sm = SLOT.search(prefix)
+        slot = f"{sm.group(1).lower()} night" if sm else None
         tid = re.search(r'tvg-id="([^"]*)"', line)
-        prefix = m["prefix"].strip()
+        slug = re.sub(r"[^A-Za-z0-9]+", "_", prefix).strip("_").lower()
         cid = (tid.group(1).strip() if tid else "") or re.sub(r"[^A-Za-z0-9]+", ".", prefix).strip(".")
-        out.append({"id": cid, "prefix": prefix, "name": name, "teams": (m["a"], m["h"])})
+        out.append({"id": cid, "prefix": prefix, "name": name, "teams": teams,
+                    "slot": slot, "slug": slug})
     return out
 
 
@@ -102,12 +116,27 @@ def same_team(x, y):
     return bool(x and y) and (x == y or x in y or y in x or x.split()[-1] == y.split()[-1])
 
 
+def prime_slot(game):
+    """'monday night' / 'thursday night' / 'sunday night' for 7pm+ ET kickoffs."""
+    et = game["start"].astimezone(ZoneInfo("America/New_York"))
+    if et.hour < 19:
+        return None
+    return {0: "monday night", 3: "thursday night", 6: "sunday night"}.get(et.weekday())
+
+
 def channel_for(game, channels):
-    for ch in channels:
+    for ch in channels:                       # 1) matchup in the channel name
+        if not ch["teams"]:
+            continue
         a, h = ch["teams"]
         if (same_team(a, game["away"]) and same_team(h, game["home"])) or \
            (same_team(a, game["home"]) and same_team(h, game["away"])):
             return ch
+    slot = prime_slot(game)                   # 2) empty primetime channel, by day
+    if slot:
+        for ch in channels:
+            if not ch["teams"] and ch["slot"] == slot:
+                return ch
     return None
 
 
@@ -173,9 +202,14 @@ def make_icons(games, channels):
             make_matchup(g, path, cache)
             g["icon"] = f"{base}{path}"
             ch = channel_for(g, channels)
-            if ch and ch["id"] not in done:
-                slug = re.sub(r"[^A-Za-z0-9]+", "_", ch["id"]).strip("_").lower()
-                cpath = f"icons/channels/{slug}.png"
+            custom = f"custom/{ch['slug']}.png" if ch else None
+            if custom and os.path.exists(custom):   # your own image wins
+                with open(custom, "rb") as fh:
+                    v = hashlib.md5(fh.read()).hexdigest()[:8]
+                g["icon"] = f"{base}{custom}?v={v}"
+                g["chan_icon"] = g["icon"]
+            elif ch and ch["id"] not in done:
+                cpath = f"icons/channels/{ch['slug']}.png"
                 shutil.copyfile(path, cpath)
                 g["chan_icon"] = f"{base}{cpath}?v={name}"  # ?v= busts app caches each week
                 done.add(ch["id"])
