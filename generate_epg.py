@@ -166,7 +166,7 @@ def _font(size):
 def make_matchup(g, path, cache):
     from PIL import Image, ImageDraw
     W, H, BOX = 1280, 720, 440
-    img = Image.new("RGB", (W, H), (16, 18, 24))
+    img = Image.new("RGB", (W, H), (255, 255, 255))
     d = ImageDraw.Draw(img)
     for side, cx in (("away", 330), ("home", 950)):
         url = g[f"{side}_logo"]
@@ -175,8 +175,8 @@ def make_matchup(g, path, cache):
         logo = cache[url].copy()
         logo.thumbnail((BOX, BOX))
         img.paste(logo, (cx - logo.width // 2, 300 - logo.height // 2), logo)
-        d.text((cx, 600), g[f"{side}_abbr"].upper(), font=_font(84), fill=(255, 255, 255), anchor="mm")
-    d.text((640, 290), "@", font=_font(150), fill=(200, 205, 215), anchor="mm")
+        d.text((cx, 600), g[f"{side}_abbr"].upper(), font=_font(84), fill=(20, 24, 32), anchor="mm")
+    d.text((640, 290), "@", font=_font(150), fill=(110, 115, 125), anchor="mm")
     img.save(path, "PNG", optimize=True)
 
 
