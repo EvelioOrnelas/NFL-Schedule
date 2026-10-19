@@ -180,6 +180,11 @@ def make_matchup(g, path, cache):
     img.save(path, "PNG", optimize=True)
 
 
+def file_hash(path):
+    with open(path, "rb") as fh:
+        return hashlib.md5(fh.read()).hexdigest()[:8]
+
+
 def make_icons(games, channels):
     """Writes icons/matchups/*.png + icons/channels/*.png and sets g['icon'] / g['chan_icon']."""
     base = icon_base()
@@ -200,18 +205,17 @@ def make_icons(games, channels):
             name = f"{g['start']:%Y%m%d}_{g['away_abbr']}_{g['home_abbr']}"
             path = f"icons/matchups/{name}.png"
             make_matchup(g, path, cache)
-            g["icon"] = f"{base}{path}"
+            h = file_hash(path)  # ?v=<hash> makes apps reload an image whenever it changes
+            g["icon"] = f"{base}{path}?v={h}"
             ch = channel_for(g, channels)
             custom = f"custom/{ch['slug']}.png" if ch else None
             if custom and os.path.exists(custom):   # your own image wins
-                with open(custom, "rb") as fh:
-                    v = hashlib.md5(fh.read()).hexdigest()[:8]
-                g["icon"] = f"{base}{custom}?v={v}"
+                g["icon"] = f"{base}{custom}?v={file_hash(custom)}"
                 g["chan_icon"] = g["icon"]
             elif ch and ch["id"] not in done:
                 cpath = f"icons/channels/{ch['slug']}.png"
                 shutil.copyfile(path, cpath)
-                g["chan_icon"] = f"{base}{cpath}?v={name}"  # ?v= busts app caches each week
+                g["chan_icon"] = f"{base}{cpath}?v={h}"
                 done.add(ch["id"])
         except Exception as e:  # one bad logo must not break the guide
             print(f"Image skipped for {g['away']} at {g['home']}: {e}")
