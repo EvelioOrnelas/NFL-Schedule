@@ -11,9 +11,9 @@
   <channel id="NFL.Game7"><display-name>NFL Game 7</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_pit_tb.png?v=b0929891"/></channel>
   <channel id="NFL.Game8"><display-name>NFL Game 8</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_ari_lar.png?v=0f75006b"/></channel>
   <channel id="NFL.Game9"><display-name>NFL Game 9</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_lac_kc.png?v=db678882"/></channel>
-  <channel id="USA.ESPN.001.Football.NFL.Football.2026.Week.6.Dallas.Cowboys.vs.Green.Bay.Packers.NFL.Football"><display-name>USA ESPN+ 001: Football: NFL Football: 2026 Week 6 Dallas Cowboys vs. Green Bay Packers (NFL Football</display-name><display-name>USA ESPN+ 001: Football: NFL Football: 2026 Week 6 Dallas Cowboys vs. Green Bay Packers (NFL Football: 2026 Week 6 Dallas Cowboys vs. Green Bay Packers) (2026-10-19 02:30:00)</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_espn_001_football_nfl_football_2026_week_6_dallas_cowboys_vs_green_bay_packers_nfl_football.png?v=17850f02"/></channel>
-  <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night: Washington Commanders vs San Francisco 49ers</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=b4df751e"/></channel>
-  <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=341ca681"/></channel>
+  <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><display-name>USA NFL Monday Night: Washington Commanders vs San Francisco 49ers</display-name><display-name>USA NFL Monday Night: Washington Commanders vs San Francisco 49ers @ 08:15 PM EDT</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=b4df751e"/></channel>
+  <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=17850f02"/></channel>
+  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><display-name>USA NFL Thursday Night: Washington Commanders vs San Francisco 49ers</display-name><display-name>USA NFL Thursday Night: Washington Commanders vs San Francisco 49ers @ 08:15 PM EDT</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=c012de38"/></channel>
   <programme start="20261018073000 -0600" stop="20261018110000 -0600" channel="NFL.Game1">
     <title lang="en">NFL Football: Houston Texans at Jacksonville Jaguars</title>
     <desc lang="en">Houston Texans at Jacksonville Jaguars. NFL regular season. Broadcast: NFL Net.</desc>
@@ -91,7 +91,7 @@
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_lac_kc.png?v=db678882"/>
     <new/>
   </programme>
-  <programme start="20261018182000 -0600" stop="20261018215000 -0600" channel="USA.ESPN.001.Football.NFL.Football.2026.Week.6.Dallas.Cowboys.vs.Green.Bay.Packers.NFL.Football">
+  <programme start="20261018182000 -0600" stop="20261018215000 -0600" channel="USA.NFL.Sunday.Night">
     <title lang="en">NFL Football: Dallas Cowboys at Green Bay Packers</title>
     <desc lang="en">Dallas Cowboys at Green Bay Packers. NFL regular season. Broadcast: NBC.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
@@ -105,7 +105,7 @@
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261020_wsh_sf.png?v=b4df751e"/>
     <new/>
   </programme>
-  <programme start="20261022181500 -0600" stop="20261022214500 -0600" channel="NFL.Game1">
+  <programme start="20261022181500 -0600" stop="20261022214500 -0600" channel="USA.NFL.Thursday.Night">
     <title lang="en">NFL Football: New England Patriots at Chicago Bears</title>
     <desc lang="en">New England Patriots at Chicago Bears. NFL regular season. Broadcast: Prime Video.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
@@ -196,7 +196,7 @@
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261026_kc_sea.png?v=341ca681"/>
     <new/>
   </programme>
-  <programme start="20261026181500 -0600" stop="20261026214500 -0600" channel="USA.NFL.Monday.Night">
+  <programme start="20261026181500 -0600" stop="20261026214500 -0600" channel="NFL.Game1">
     <title lang="en">NFL Football: Dallas Cowboys at Philadelphia Eagles</title>
     <desc lang="en">Dallas Cowboys at Philadelphia Eagles. NFL regular season. Broadcast: ESPN, ABC, Disney+.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
