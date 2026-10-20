@@ -73,37 +73,41 @@ def get_games():
 
 
 # ---- playlist -------------------------------------------------------------
-CH = re.compile(r"^(?P<prefix>.*NFL.*?):\s*(?P<a>.+?)\s+(?:vs\.?|at|@)\s+(?P<h>.+)$", re.I)
-
-
+PFX = r"(?P<prefix>[^:]*?\bNFL\s+(?:Sunday|Monday|Thursday|Saturday)(?:\s+(?:\d+|Night))?)"
+CH = re.compile(PFX + r"\s*:\s*(?P<a>.+?)\s+(?:vs\.?|at|@)\s+(?P<h>.+)$", re.I)
+EMPTY = re.compile("^" + PFX + r"\s*:?\s*$", re.I)
 TIME_SUFFIX = re.compile(r"(?:\s*@)+\s*\d{1,2}:\d{2}\s*[AP]M(?:\s+[A-Z]{2,4})?\s*$", re.I)
 SLOT = re.compile(r"(Monday|Thursday|Sunday)\s+Night", re.I)
-EMPTY_SLOT = re.compile(r"^(?P<prefix>.*?NFL\s+(?:Monday|Thursday|Sunday)\s+Night)\s*:?\s*$", re.I)
 
 
 def parse_playlist(text):
-    """Provider NFL channels. Channels named with a matchup get matched by teams;
-    primetime channels with an empty matchup ("USA NFL Monday Night:") by day."""
+    """Provider NFL channels (USA NFL Sunday 7xx / Monday Night / Thursday Night / Sunday Night).
+    Named with a matchup -> matched by teams; empty ("USA NFL Monday Night:") -> by day.
+    Every spelling of the channel name goes into the guide as a display-name, because
+    these channels have no tvg-id and the app can only match on the name."""
     out = []
     for line in text.splitlines():
         if not line.startswith("#EXTINF"):
             continue
-        name = TIME_SUFFIX.sub("", line.rsplit(",", 1)[-1].strip()).strip()
+        raw = line.rsplit(",", 1)[-1].strip()
+        name = TIME_SUFFIX.sub("", raw).strip()
         m = CH.match(name)
         if m:
             prefix, teams = m["prefix"].strip(), (m["a"].strip(), m["h"].strip())
         else:
-            e = EMPTY_SLOT.match(name)
+            e = EMPTY.match(name)
             if not e:
                 continue
             prefix, teams = e["prefix"].strip(), None
         sm = SLOT.search(prefix)
         slot = f"{sm.group(1).lower()} night" if sm else None
         tid = re.search(r'tvg-id="([^"]*)"', line)
+        tname = re.search(r'tvg-name="([^"]*)"', line)
         slug = re.sub(r"[^A-Za-z0-9]+", "_", prefix).strip("_").lower()
         cid = (tid.group(1).strip() if tid else "") or re.sub(r"[^A-Za-z0-9]+", ".", prefix).strip(".")
-        out.append({"id": cid, "prefix": prefix, "name": name, "teams": teams,
-                    "slot": slot, "slug": slug})
+        names = [prefix, prefix + ":", name, raw] + ([tname.group(1).strip()] if tname else [])
+        out.append({"id": cid, "prefix": prefix, "name": name, "teams": teams, "slot": slot,
+                    "slug": slug, "names": [n for n in dict.fromkeys(names) if n]})
     return out
 
 
@@ -124,18 +128,32 @@ def prime_slot(game):
     return {0: "monday night", 3: "thursday night", 6: "sunday night"}.get(et.weekday())
 
 
+def teams_match(ch, game):
+    """Matchup in the channel name equals the game (and, for Night channels, the right night)."""
+    if not ch["teams"]:
+        return False
+    if ch["slot"] and prime_slot(game) != ch["slot"]:
+        return False
+    a, h = ch["teams"]
+    return (same_team(a, game["away"]) and same_team(h, game["home"])) or \
+           (same_team(a, game["home"]) and same_team(h, game["away"]))
+
+
+def mark_stale(channels, games):
+    """A Night channel whose name shows a matchup that isn't on that night's schedule
+    (provider left an old name on it) is 'stale' and gets matched by day instead."""
+    for ch in channels:
+        ch["stale"] = bool(ch["teams"] and ch["slot"]) and not any(teams_match(ch, g) for g in games)
+
+
 def channel_for(game, channels):
     for ch in channels:                       # 1) matchup in the channel name
-        if not ch["teams"]:
-            continue
-        a, h = ch["teams"]
-        if (same_team(a, game["away"]) and same_team(h, game["home"])) or \
-           (same_team(a, game["home"]) and same_team(h, game["away"])):
+        if teams_match(ch, game):
             return ch
-    slot = prime_slot(game)                   # 2) empty primetime channel, by day
+    slot = prime_slot(game)                   # 2) Night channel with empty/stale matchup, by day
     if slot:
         for ch in channels:
-            if not ch["teams"] and ch["slot"] == slot:
+            if ch["slot"] == slot and (not ch["teams"] or ch.get("stale")):
                 return ch
     return None
 
@@ -228,7 +246,7 @@ def build_xml(games, channels):
         ch = channel_for(g, channels)
         if ch:
             cid = ch["id"]
-            chan_defs.setdefault(cid, [ch["prefix"], ch["name"]])
+            chan_defs.setdefault(cid, ch.get("names") or [ch["prefix"], ch["name"]])
             if g.get("chan_icon"):
                 chan_icons.setdefault(cid, g["chan_icon"])
         else:  # no matching provider channel: spread across generic channels
@@ -276,7 +294,12 @@ def main():
     url = os.environ.get("M3U_URL", "").strip().strip("\"'").strip()
     if url:
         channels = parse_playlist(fetch(url, "IPTV playlist (M3U_URL secret)"))
+        mark_stale(channels, games)
         print(f"Found {len(channels)} NFL channels in playlist")
+        for ch in channels:
+            hits = [g for g in games if channel_for(g, channels) is ch]
+            tag = ", ".join(f"{g['away']} at {g['home']}" for g in hits) or "no game"
+            print(f"  {ch['name']!r} (tvg-id {'set' if ch['id'] != re.sub(r'[^A-Za-z0-9]+', '.', ch['prefix']).strip('.') else 'none'}) -> {tag}")
     else:
         print("M3U_URL not set: using generic NFL Game channels")
     make_icons(games, channels)
