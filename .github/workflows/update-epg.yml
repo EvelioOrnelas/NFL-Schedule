@@ -2,7 +2,7 @@ name: Update NFL EPG
 
 on:
   schedule:
-    - cron: "0 12 * * *"   # daily, 6 AM Mountain (5 AM after clocks fall back)
+    - cron: "10 */3 * * *"  # every 3 hours; commits only when something changed
   workflow_dispatch:        # lets you run it by hand from the Actions tab
 
 permissions:
