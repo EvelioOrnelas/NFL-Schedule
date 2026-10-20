@@ -1,103 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
 <tv generator-info-name="nfl-epg">
-  <channel id="NFL.Game1"><display-name>NFL Game 1</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_hou_jax.png?v=93c3ac09"/></channel>
-  <channel id="NFL.Game10"><display-name>NFL Game 10</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_buf_lv.png?v=15c78c83"/></channel>
-  <channel id="NFL.Game2"><display-name>NFL Game 2</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_bal_cle.png?v=c158ef64"/></channel>
-  <channel id="NFL.Game3"><display-name>NFL Game 3</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_ten_ind.png?v=8c7265fb"/></channel>
-  <channel id="NFL.Game4"><display-name>NFL Game 4</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_nyj_ne.png?v=ac39df7a"/></channel>
-  <channel id="NFL.Game5"><display-name>NFL Game 5</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_no_nyg.png?v=f23eafb3"/></channel>
-  <channel id="NFL.Game6"><display-name>NFL Game 6</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_car_phi.png?v=98943be1"/></channel>
-  <channel id="NFL.Game7"><display-name>NFL Game 7</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_pit_tb.png?v=b0929891"/></channel>
-  <channel id="NFL.Game8"><display-name>NFL Game 8</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_ari_lar.png?v=0f75006b"/></channel>
-  <channel id="NFL.Game9"><display-name>NFL Game 9</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_lac_kc.png?v=db678882"/></channel>
+  <channel id="NFL.Game1"><display-name>NFL Game 1</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_pit_no.png?v=c1f0d1d0"/></channel>
+  <channel id="NFL.Game10"><display-name>NFL Game 10</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_lar_lv.png?v=8561bedd"/></channel>
+  <channel id="NFL.Game2"><display-name>NFL Game 2</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_cle_ten.png?v=cc31b345"/></channel>
+  <channel id="NFL.Game3"><display-name>NFL Game 3</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_ind_min.png?v=38710931"/></channel>
+  <channel id="NFL.Game4"><display-name>NFL Game 4</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_mia_nyj.png?v=447e1497"/></channel>
+  <channel id="NFL.Game5"><display-name>NFL Game 5</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_tb_car.png?v=b58143af"/></channel>
+  <channel id="NFL.Game6"><display-name>NFL Game 6</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_cin_bal.png?v=ce5975dd"/></channel>
+  <channel id="NFL.Game7"><display-name>NFL Game 7</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_nyg_hou.png?v=6630f9cc"/></channel>
+  <channel id="NFL.Game8"><display-name>NFL Game 8</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_den_ari.png?v=170f98b9"/></channel>
+  <channel id="NFL.Game9"><display-name>NFL Game 9</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_gb_det.png?v=db1a7db1"/></channel>
   <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><display-name>USA NFL Monday Night: Washington Commanders vs San Francisco 49ers</display-name><display-name>USA NFL Monday Night: Washington Commanders vs San Francisco 49ers @ 08:15 PM EDT</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=b4df751e"/></channel>
-  <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=17850f02"/></channel>
+  <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=341ca681"/></channel>
   <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><display-name>USA NFL Thursday Night: Washington Commanders vs San Francisco 49ers</display-name><display-name>USA NFL Thursday Night: Washington Commanders vs San Francisco 49ers @ 08:15 PM EDT</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=c012de38"/></channel>
-  <programme start="20261018073000 -0600" stop="20261018110000 -0600" channel="NFL.Game1">
-    <title lang="en">NFL Football: Houston Texans at Jacksonville Jaguars</title>
-    <desc lang="en">Houston Texans at Jacksonville Jaguars. NFL regular season. Broadcast: NFL Net.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_hou_jax.png?v=93c3ac09"/>
-    <new/>
-  </programme>
-  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="NFL.Game1">
-    <title lang="en">NFL Football: Chicago Bears at Atlanta Falcons</title>
-    <desc lang="en">Chicago Bears at Atlanta Falcons. NFL regular season. Broadcast: Fox.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_chi_atl.png?v=1a1bfed3"/>
-    <new/>
-  </programme>
-  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="NFL.Game2">
-    <title lang="en">NFL Football: Baltimore Ravens at Cleveland Browns</title>
-    <desc lang="en">Baltimore Ravens at Cleveland Browns. NFL regular season. Broadcast: Fox.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_bal_cle.png?v=c158ef64"/>
-    <new/>
-  </programme>
-  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="NFL.Game3">
-    <title lang="en">NFL Football: Tennessee Titans at Indianapolis Colts</title>
-    <desc lang="en">Tennessee Titans at Indianapolis Colts. NFL regular season. Broadcast: Fox.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_ten_ind.png?v=8c7265fb"/>
-    <new/>
-  </programme>
-  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="NFL.Game4">
-    <title lang="en">NFL Football: New York Jets at New England Patriots</title>
-    <desc lang="en">New York Jets at New England Patriots. NFL regular season. Broadcast: CBS.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_nyj_ne.png?v=ac39df7a"/>
-    <new/>
-  </programme>
-  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="NFL.Game5">
-    <title lang="en">NFL Football: New Orleans Saints at New York Giants</title>
-    <desc lang="en">New Orleans Saints at New York Giants. NFL regular season. Broadcast: Fox.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_no_nyg.png?v=f23eafb3"/>
-    <new/>
-  </programme>
-  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="NFL.Game6">
-    <title lang="en">NFL Football: Carolina Panthers at Philadelphia Eagles</title>
-    <desc lang="en">Carolina Panthers at Philadelphia Eagles. NFL regular season. Broadcast: CBS.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_car_phi.png?v=98943be1"/>
-    <new/>
-  </programme>
-  <programme start="20261018110000 -0600" stop="20261018143000 -0600" channel="NFL.Game7">
-    <title lang="en">NFL Football: Pittsburgh Steelers at Tampa Bay Buccaneers</title>
-    <desc lang="en">Pittsburgh Steelers at Tampa Bay Buccaneers. NFL regular season. Broadcast: CBS.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_pit_tb.png?v=b0929891"/>
-    <new/>
-  </programme>
-  <programme start="20261018140500 -0600" stop="20261018173500 -0600" channel="NFL.Game8">
-    <title lang="en">NFL Football: Arizona Cardinals at Los Angeles Rams</title>
-    <desc lang="en">Arizona Cardinals at Los Angeles Rams. NFL regular season. Broadcast: Fox.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_ari_lar.png?v=0f75006b"/>
-    <new/>
-  </programme>
-  <programme start="20261018142500 -0600" stop="20261018175500 -0600" channel="NFL.Game10">
-    <title lang="en">NFL Football: Buffalo Bills at Las Vegas Raiders</title>
-    <desc lang="en">Buffalo Bills at Las Vegas Raiders. NFL regular season. Broadcast: CBS.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_buf_lv.png?v=15c78c83"/>
-    <new/>
-  </programme>
-  <programme start="20261018142500 -0600" stop="20261018175500 -0600" channel="NFL.Game9">
-    <title lang="en">NFL Football: Los Angeles Chargers at Kansas City Chiefs</title>
-    <desc lang="en">Los Angeles Chargers at Kansas City Chiefs. NFL regular season. Broadcast: CBS.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261018_lac_kc.png?v=db678882"/>
-    <new/>
-  </programme>
-  <programme start="20261018182000 -0600" stop="20261018215000 -0600" channel="USA.NFL.Sunday.Night">
-    <title lang="en">NFL Football: Dallas Cowboys at Green Bay Packers</title>
-    <desc lang="en">Dallas Cowboys at Green Bay Packers. NFL regular season. Broadcast: NBC.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261019_dal_gb.png?v=17850f02"/>
-    <new/>
-  </programme>
   <programme start="20261019181500 -0600" stop="20261019214500 -0600" channel="USA.NFL.Monday.Night">
     <title lang="en">NFL Football: Washington Commanders at San Francisco 49ers</title>
     <desc lang="en">Washington Commanders at San Francisco 49ers. NFL regular season. Broadcast: ESPN, ABC.</desc>
@@ -201,6 +117,13 @@
     <desc lang="en">Dallas Cowboys at Philadelphia Eagles. NFL regular season. Broadcast: ESPN, ABC, Disney+.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261027_dal_phi.png?v=2c1a939d"/>
+    <new/>
+  </programme>
+  <programme start="20261029181500 -0600" stop="20261029214500 -0600" channel="USA.NFL.Thursday.Night">
+    <title lang="en">NFL Football: Carolina Panthers at Green Bay Packers</title>
+    <desc lang="en">Carolina Panthers at Green Bay Packers. NFL regular season. Broadcast: Prime Video.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261030_car_gb.png?v=381c1924"/>
     <new/>
   </programme>
 </tv>
