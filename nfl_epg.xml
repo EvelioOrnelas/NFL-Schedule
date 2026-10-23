@@ -13,9 +13,9 @@
   <channel id="NFL.Game8"><display-name>NFL Game 8</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_den_ari.png?v=170f98b9"/></channel>
   <channel id="NFL.Game9"><display-name>NFL Game 9</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261025_gb_det.png?v=db1a7db1"/></channel>
   <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=2c1a939d"/></channel>
-  <channel id="USA.NFL.Sunday.705"><display-name>USA NFL Sunday 705</display-name><display-name>USA NFL Sunday 705:</display-name><display-name>USA NFL Sunday 705: New England Patriots vs Chicago Bears</display-name><display-name>USA NFL Sunday 705: New England Patriots vs Chicago Bears @ 08:15 PM EDT</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_705.png?v=c012de38"/></channel>
   <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=341ca681"/></channel>
-  <programme start="20261022181500 -0600" stop="20261022214500 -0600" channel="USA.NFL.Sunday.705">
+  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=c012de38"/></channel>
+  <programme start="20261022181500 -0600" stop="20261022214500 -0600" channel="USA.NFL.Thursday.Night">
     <title lang="en">NFL Football: New England Patriots at Chicago Bears</title>
     <desc lang="en">New England Patriots at Chicago Bears. NFL regular season. Broadcast: Prime Video.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
@@ -113,7 +113,7 @@
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261027_dal_phi.png?v=2c1a939d"/>
     <new/>
   </programme>
-  <programme start="20261029181500 -0600" stop="20261029214500 -0600" channel="NFL.Game1">
+  <programme start="20261029181500 -0600" stop="20261029214500 -0600" channel="USA.NFL.Thursday.Night">
     <title lang="en">NFL Football: Carolina Panthers at Green Bay Packers</title>
     <desc lang="en">Carolina Panthers at Green Bay Packers. NFL regular season. Broadcast: Prime Video.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
