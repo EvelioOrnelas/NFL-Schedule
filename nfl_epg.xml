@@ -12,7 +12,7 @@
   <channel id="NFL.Game7"><display-name>NFL Game 7</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261101_atl_tb.png?v=58c24b00"/></channel>
   <channel id="NFL.Game8"><display-name>NFL Game 8</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261101_ind_jax.png?v=57a7dfa1"/></channel>
   <channel id="NFL.Game9"><display-name>NFL Game 9</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261101_lac_lar.png?v=1cee197e"/></channel>
-  <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><display-name>USA NFL Monday Night:Dallas Cowboys vs Philadelphia Eagles</display-name><display-name>USA NFL Monday Night:Dallas Cowboys vs Philadelphia Eagles @ 08:15 PM EDT</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=2c1a939d"/></channel>
+  <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=2c1a939d"/></channel>
   <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=446efcae"/></channel>
   <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=381c1924"/></channel>
   <programme start="20261026181500 -0600" stop="20261026214500 -0600" channel="USA.NFL.Monday.Night">
@@ -113,7 +113,7 @@
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261102_phi_wsh.png?v=446efcae"/>
     <new/>
   </programme>
-  <programme start="20261102181500 -0700" stop="20261102214500 -0700" channel="NFL.Game1">
+  <programme start="20261102181500 -0700" stop="20261102214500 -0700" channel="USA.NFL.Monday.Night">
     <title lang="en">NFL Football: Chicago Bears at Seattle Seahawks</title>
     <desc lang="en">Chicago Bears at Seattle Seahawks. NFL regular season. Broadcast: ESPN.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
