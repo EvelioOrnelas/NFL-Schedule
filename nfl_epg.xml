@@ -12,16 +12,9 @@
   <channel id="NFL.Game7"><display-name>NFL Game 7</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261101_atl_tb.png?v=58c24b00"/></channel>
   <channel id="NFL.Game8"><display-name>NFL Game 8</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261101_ind_jax.png?v=57a7dfa1"/></channel>
   <channel id="NFL.Game9"><display-name>NFL Game 9</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261101_lac_lar.png?v=1cee197e"/></channel>
-  <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=2c1a939d"/></channel>
+  <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=88b4c8d8"/></channel>
   <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=446efcae"/></channel>
   <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=381c1924"/></channel>
-  <programme start="20261026181500 -0600" stop="20261026214500 -0600" channel="USA.NFL.Monday.Night">
-    <title lang="en">NFL Football: Dallas Cowboys at Philadelphia Eagles</title>
-    <desc lang="en">Dallas Cowboys at Philadelphia Eagles. NFL regular season. Broadcast: ESPN, ABC, Disney+.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261027_dal_phi.png?v=2c1a939d"/>
-    <new/>
-  </programme>
   <programme start="20261029181500 -0600" stop="20261029214500 -0600" channel="USA.NFL.Thursday.Night">
     <title lang="en">NFL Football: Carolina Panthers at Green Bay Packers</title>
     <desc lang="en">Carolina Panthers at Green Bay Packers. NFL regular season. Broadcast: Prime Video.</desc>
