@@ -14,7 +14,7 @@
   <channel id="NFL.Game9"><display-name>NFL Game 9</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261101_lac_lar.png?v=1cee197e"/></channel>
   <channel id="USA.NFL.Monday.Night"><display-name>USA NFL Monday Night</display-name><display-name>USA NFL Monday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_monday_night.png?v=88b4c8d8"/></channel>
   <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=446efcae"/></channel>
-  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=381c1924"/></channel>
+  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><display-name>USA NFL Thursday Night: Carolina Panthers vs Green Bay Packers</display-name><display-name>USA NFL Thursday Night: Carolina Panthers vs Green Bay Packers @ 08:15 PM</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=381c1924"/></channel>
   <programme start="20261029181500 -0600" stop="20261029214500 -0600" channel="USA.NFL.Thursday.Night">
     <title lang="en">NFL Football: Carolina Panthers at Green Bay Packers</title>
     <desc lang="en">Carolina Panthers at Green Bay Packers. NFL regular season. Broadcast: Prime Video.</desc>
@@ -113,7 +113,7 @@
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261103_chi_sea.png?v=88b4c8d8"/>
     <new/>
   </programme>
-  <programme start="20261105181500 -0700" stop="20261105214500 -0700" channel="USA.NFL.Thursday.Night">
+  <programme start="20261105181500 -0700" stop="20261105214500 -0700" channel="NFL.Game1">
     <title lang="en">NFL Football: Jacksonville Jaguars at Baltimore Ravens</title>
     <desc lang="en">Jacksonville Jaguars at Baltimore Ravens. NFL regular season. Broadcast: Prime Video.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
