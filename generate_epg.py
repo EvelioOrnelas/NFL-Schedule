@@ -147,16 +147,16 @@ def mark_stale(channels, games):
 
 
 def channels_for(game, channels):
-    """Every provider channel that should carry this game: the one whose name shows the
-    matchup, AND the day's Night channel (a primetime game can sit on both)."""
-    hits = [ch for ch in channels if teams_match(ch, game)]
+    """Primetime games (Thursday/Sunday/Monday night) go ONLY on that night's channel,
+    even if the provider has put the matchup in some other channel's name.
+    Other games go on the channel whose name shows the matchup."""
     slot = prime_slot(game)
     if slot:
-        for ch in channels:
-            if ch["slot"] == slot and (not ch["teams"] or ch.get("stale") or teams_match(ch, game)):
-                if ch not in hits:
-                    hits.append(ch)
-    return hits
+        night = [ch for ch in channels if ch["slot"] == slot
+                 and (not ch["teams"] or ch.get("stale") or teams_match(ch, game))]
+        if night:
+            return night
+    return [ch for ch in channels if teams_match(ch, game)]
 
 
 def channel_for(game, channels):
