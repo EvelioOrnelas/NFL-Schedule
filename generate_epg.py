@@ -103,11 +103,13 @@ def parse_playlist(text):
         slot = f"{sm.group(1).lower()} night" if sm else None
         tid = re.search(r'tvg-id="([^"]*)"', line)
         tname = re.search(r'tvg-name="([^"]*)"', line)
+        tlogo = re.search(r'tvg-logo="([^"]*)"', line)
         slug = re.sub(r"[^A-Za-z0-9]+", "_", prefix).strip("_").lower()
         cid = (tid.group(1).strip() if tid else "") or re.sub(r"[^A-Za-z0-9]+", ".", prefix).strip(".")
         names = [prefix, prefix + ":", name, raw] + ([tname.group(1).strip()] if tname else [])
         out.append({"id": cid, "prefix": prefix, "name": name, "teams": teams, "slot": slot,
-                    "slug": slug, "names": [n for n in dict.fromkeys(names) if n]})
+                    "slug": slug, "names": [n for n in dict.fromkeys(names) if n],
+                    "logo": (tlogo.group(1).strip() if tlogo else "")})
     return out
 
 
@@ -260,6 +262,21 @@ def make_icons(games, channels):
                     ch["icon_url"] = f"{base}{cpath}?v={file_hash(cpath)}"
                     done.add(ch["id"])
                 break
+    # channels with no game and no matchup yet: reuse the logo your own playlist gives them
+    # (e.g. the Sunday Ticket logo), saved into this repo so the guide never links to the provider
+    for ch in channels:
+        if ch["id"] in done or not ch.get("logo"):
+            continue
+        try:
+            from PIL import Image
+            im = Image.open(io.BytesIO(fetch_bytes(ch["logo"], f"channel logo {ch['slug']}"))).convert("RGBA")
+            im.thumbnail((512, 512))
+            cpath = f"icons/channels/{ch['slug']}.png"
+            im.save(cpath, "PNG", optimize=True)
+            ch["icon_url"] = f"{base}{cpath}?v={file_hash(cpath)}"
+            done.add(ch["id"])
+        except Exception as e:
+            print(f"Channel logo skipped for {ch['name']!r}: {e}")
 
 
 # ---- XMLTV ----------------------------------------------------------------
