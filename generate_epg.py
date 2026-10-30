@@ -244,6 +244,22 @@ def make_icons(games, channels):
                     done.add(ch["id"])
         except Exception as e:  # one bad logo must not break the guide
             print(f"Image skipped for {g['away']} at {g['home']}: {e}")
+    # channels whose provider name shows a matchup get that matchup's image as their logo,
+    # even when the game itself is carried on a Night channel
+    for ch in channels:
+        if not ch["teams"] or ch["id"] in done:
+            continue
+        for g in games:
+            a, h = ch["teams"]
+            if (same_team(a, g["away"]) and same_team(h, g["home"])) or \
+               (same_team(a, g["home"]) and same_team(h, g["away"])):
+                src = f"icons/matchups/{g['start']:%Y%m%d}_{g['away_abbr']}_{g['home_abbr']}.png"
+                if os.path.exists(src):
+                    cpath = f"icons/channels/{ch['slug']}.png"
+                    shutil.copyfile(src, cpath)
+                    ch["icon_url"] = f"{base}{cpath}?v={file_hash(cpath)}"
+                    done.add(ch["id"])
+                break
 
 
 # ---- XMLTV ----------------------------------------------------------------
@@ -251,6 +267,9 @@ def build_xml(games, channels):
     chan_defs, chan_icons, progs, busy = {}, {}, [], []
     for ch in channels:   # keep every provider NFL channel in the guide, even with no game today
         chan_defs.setdefault(ch["id"], ch.get("names") or [ch["prefix"], ch["name"]])
+    for ch in channels:
+        if ch.get("icon_url"):
+            chan_icons.setdefault(ch["id"], ch["icon_url"])
     for g in games:
         hits = channels_for(g, channels)
         if hits:
