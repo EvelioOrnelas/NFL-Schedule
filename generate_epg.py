@@ -146,16 +146,22 @@ def mark_stale(channels, games):
         ch["stale"] = bool(ch["teams"] and ch["slot"]) and not any(teams_match(ch, g) for g in games)
 
 
-def channel_for(game, channels):
-    for ch in channels:                       # 1) matchup in the channel name
-        if teams_match(ch, game):
-            return ch
-    slot = prime_slot(game)                   # 2) Night channel with empty/stale matchup, by day
+def channels_for(game, channels):
+    """Every provider channel that should carry this game: the one whose name shows the
+    matchup, AND the day's Night channel (a primetime game can sit on both)."""
+    hits = [ch for ch in channels if teams_match(ch, game)]
+    slot = prime_slot(game)
     if slot:
         for ch in channels:
-            if ch["slot"] == slot and (not ch["teams"] or ch.get("stale")):
-                return ch
-    return None
+            if ch["slot"] == slot and (not ch["teams"] or ch.get("stale") or teams_match(ch, game)):
+                if ch not in hits:
+                    hits.append(ch)
+    return hits
+
+
+def channel_for(game, channels):
+    hits = channels_for(game, channels)
+    return hits[0] if hits else None
 
 
 # ---- matchup images ---------------------------------------------------------
@@ -225,16 +231,17 @@ def make_icons(games, channels):
             make_matchup(g, path, cache)
             h = file_hash(path)  # ?v=<hash> makes apps reload an image whenever it changes
             g["icon"] = f"{base}{path}?v={h}"
-            ch = channel_for(g, channels)
-            custom = f"custom/{ch['slug']}.png" if ch else None
-            if custom and os.path.exists(custom):   # your own image wins
-                g["icon"] = f"{base}{custom}?v={file_hash(custom)}"
-                g["chan_icon"] = g["icon"]
-            elif ch and ch["id"] not in done:
-                cpath = f"icons/channels/{ch['slug']}.png"
-                shutil.copyfile(path, cpath)
-                g["chan_icon"] = f"{base}{cpath}?v={h}"
-                done.add(ch["id"])
+            g["chan_icons"] = {}
+            for ch in channels_for(g, channels):
+                custom = f"custom/{ch['slug']}.png"
+                if os.path.exists(custom):   # your own image wins
+                    g["icon"] = f"{base}{custom}?v={file_hash(custom)}"
+                    g["chan_icons"][ch["id"]] = g["icon"]
+                elif ch["id"] not in done:
+                    cpath = f"icons/channels/{ch['slug']}.png"
+                    shutil.copyfile(path, cpath)
+                    g["chan_icons"][ch["id"]] = f"{base}{cpath}?v={h}"
+                    done.add(ch["id"])
         except Exception as e:  # one bad logo must not break the guide
             print(f"Image skipped for {g['away']} at {g['home']}: {e}")
 
@@ -242,13 +249,16 @@ def make_icons(games, channels):
 # ---- XMLTV ----------------------------------------------------------------
 def build_xml(games, channels):
     chan_defs, chan_icons, progs, busy = {}, {}, [], []
+    for ch in channels:   # keep every provider NFL channel in the guide, even with no game today
+        chan_defs.setdefault(ch["id"], ch.get("names") or [ch["prefix"], ch["name"]])
     for g in games:
-        ch = channel_for(g, channels)
-        if ch:
-            cid = ch["id"]
-            chan_defs.setdefault(cid, ch.get("names") or [ch["prefix"], ch["name"]])
-            if g.get("chan_icon"):
-                chan_icons.setdefault(cid, g["chan_icon"])
+        hits = channels_for(g, channels)
+        if hits:
+            for ch in hits:
+                cid = ch["id"]
+                if g.get("chan_icons", {}).get(cid):
+                    chan_icons.setdefault(cid, g["chan_icons"][cid])
+                progs.append((cid, g))
         else:  # no matching provider channel: spread across generic channels
             for i, end in enumerate(busy):
                 if end <= g["start"]:
@@ -261,7 +271,7 @@ def build_xml(games, channels):
             chan_defs.setdefault(cid, [f"NFL Game {i + 1}"])
             if g.get("icon"):
                 chan_icons.setdefault(cid, g["icon"])
-        progs.append((cid, g))
+            progs.append((cid, g))
 
     fmt = lambda d: d.astimezone(TZ).strftime("%Y%m%d%H%M%S %z")
     o = ['<?xml version="1.0" encoding="UTF-8"?>', '<!DOCTYPE tv SYSTEM "xmltv.dtd">',
@@ -297,7 +307,7 @@ def main():
         mark_stale(channels, games)
         print(f"Found {len(channels)} NFL channels in playlist")
         for ch in channels:
-            hits = [g for g in games if channel_for(g, channels) is ch]
+            hits = [g for g in games if ch in channels_for(g, channels)]
             tag = ", ".join(f"{g['away']} at {g['home']}" for g in hits) or "no game"
             print(f"  {ch['name']!r} (tvg-id {'set' if ch['id'] != re.sub(r'[^A-Za-z0-9]+', '.', ch['prefix']).strip('.') else 'none'}) -> {tag}")
     else:
