@@ -27,14 +27,7 @@
   <channel id="USA.NFL.Sunday.716"><display-name>USA NFL Sunday 716</display-name><display-name>USA NFL Sunday 716:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_716.png?v=bc82c438"/></channel>
   <channel id="USA.NFL.Sunday.717"><display-name>USA NFL Sunday 717</display-name><display-name>USA NFL Sunday 717:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_717.png?v=bc82c438"/></channel>
   <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=446efcae"/></channel>
-  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=381c1924"/></channel>
-  <programme start="20261029181500 -0600" stop="20261029214500 -0600" channel="USA.NFL.Thursday.Night">
-    <title lang="en">NFL Football: Carolina Panthers at Green Bay Packers</title>
-    <desc lang="en">Carolina Panthers at Green Bay Packers. NFL regular season. Broadcast: Prime Video.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261030_car_gb.png?v=381c1924"/>
-    <new/>
-  </programme>
+  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=6bc5fd62"/></channel>
   <programme start="20261101110000 -0700" stop="20261101143000 -0700" channel="NFL.Game1">
     <title lang="en">NFL Football: Baltimore Ravens at Buffalo Bills</title>
     <desc lang="en">Baltimore Ravens at Buffalo Bills. NFL regular season. Broadcast: CBS.</desc>
@@ -222,6 +215,13 @@
     <desc lang="en">Tampa Bay Buccaneers at Chicago Bears. NFL regular season. Broadcast: NBC.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261109_tb_chi.png?v=4fb6a1ea"/>
+    <new/>
+  </programme>
+  <programme start="20261109181500 -0700" stop="20261109214500 -0700" channel="USA.NFL.Monday.Night">
+    <title lang="en">NFL Football: Buffalo Bills at Minnesota Vikings</title>
+    <desc lang="en">Buffalo Bills at Minnesota Vikings. NFL regular season. Broadcast: ESPN, ABC.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261110_buf_min.png?v=75459c98"/>
     <new/>
   </programme>
 </tv>
