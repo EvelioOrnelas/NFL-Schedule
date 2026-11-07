@@ -27,14 +27,7 @@
   <channel id="USA.NFL.Sunday.716"><display-name>USA NFL Sunday 716</display-name><display-name>USA NFL Sunday 716:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_716.png?v=bc82c438"/></channel>
   <channel id="USA.NFL.Sunday.717"><display-name>USA NFL Sunday 717</display-name><display-name>USA NFL Sunday 717:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_717.png?v=bc82c438"/></channel>
   <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=4fb6a1ea"/></channel>
-  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=6bc5fd62"/></channel>
-  <programme start="20261105181500 -0700" stop="20261105214500 -0700" channel="USA.NFL.Thursday.Night">
-    <title lang="en">NFL Football: Jacksonville Jaguars at Baltimore Ravens</title>
-    <desc lang="en">Jacksonville Jaguars at Baltimore Ravens. NFL regular season. Broadcast: Prime Video.</desc>
-    <category lang="en">Sports</category><category lang="en">Football</category>
-    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261106_jax_bal.png?v=6bc5fd62"/>
-    <new/>
-  </programme>
+  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=60795c26"/></channel>
   <programme start="20261108073000 -0700" stop="20261108110000 -0700" channel="NFL.Game1">
     <title lang="en">NFL Football: Cincinnati Bengals at Atlanta Falcons</title>
     <desc lang="en">Cincinnati Bengals at Atlanta Falcons. NFL regular season. Broadcast: NFL Net.</desc>
@@ -222,6 +215,13 @@
     <desc lang="en">Pittsburgh Steelers at Cincinnati Bengals. NFL regular season. Broadcast: NBC.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261116_pit_cin.png?v=e36e1f11"/>
+    <new/>
+  </programme>
+  <programme start="20261116181500 -0700" stop="20261116214500 -0700" channel="USA.NFL.Monday.Night">
+    <title lang="en">NFL Football: Los Angeles Chargers at Baltimore Ravens</title>
+    <desc lang="en">Los Angeles Chargers at Baltimore Ravens. NFL regular season. Broadcast: ESPN.</desc>
+    <category lang="en">Sports</category><category lang="en">Football</category>
+    <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261117_lac_bal.png?v=3816d09b"/>
     <new/>
   </programme>
 </tv>
