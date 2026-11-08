@@ -57,7 +57,7 @@
   </programme>
   <programme start="20261108110000 -0700" stop="20261108143000 -0700" channel="USA.NFL.Sunday.708">
     <title lang="en">NFL Football: Detroit Lions at Miami Dolphins</title>
-    <desc lang="en">Detroit Lions at Miami Dolphins. NFL regular season. Broadcast: Fox.</desc>
+    <desc lang="en">Detroit Lions at Miami Dolphins. NFL regular season. Broadcast: CBS.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261108_det_mia.png?v=b7a2eac0"/>
     <new/>
