@@ -26,7 +26,7 @@
   <channel id="USA.NFL.Sunday.716"><display-name>USA NFL Sunday 716</display-name><display-name>USA NFL Sunday 716:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_716.png?v=bc82c438"/></channel>
   <channel id="USA.NFL.Sunday.717"><display-name>USA NFL Sunday 717</display-name><display-name>USA NFL Sunday 717:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_717.png?v=bc82c438"/></channel>
   <channel id="USA.NFL.Sunday.Night"><display-name>USA NFL Sunday Night</display-name><display-name>USA NFL Sunday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_sunday_night.png?v=e36e1f11"/></channel>
-  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=60795c26"/></channel>
+  <channel id="USA.NFL.Thursday.Night"><display-name>USA NFL Thursday Night</display-name><display-name>USA NFL Thursday Night:</display-name><display-name>USA NFL Thursday Night: Washington Commander vs New York Giants</display-name><display-name>USA NFL Thursday Night: Washington Commander vs New York Giants @ 08:15 PM EDT</display-name><icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/channels/usa_nfl_thursday_night.png?v=60795c26"/></channel>
   <programme start="20261112181500 -0700" stop="20261112214500 -0700" channel="USA.NFL.Thursday.Night">
     <title lang="en">NFL Football: Washington Commanders at New York Giants</title>
     <desc lang="en">Washington Commanders at New York Giants. NFL regular season. Broadcast: Prime Video.</desc>
@@ -125,7 +125,7 @@
     <icon src="https://raw.githubusercontent.com/EvelioOrnelas/NFL-Schedule/main/icons/matchups/20261117_lac_bal.png?v=3816d09b"/>
     <new/>
   </programme>
-  <programme start="20261119181500 -0700" stop="20261119214500 -0700" channel="USA.NFL.Thursday.Night">
+  <programme start="20261119181500 -0700" stop="20261119214500 -0700" channel="NFL.Game1">
     <title lang="en">NFL Football: Indianapolis Colts at Houston Texans</title>
     <desc lang="en">Indianapolis Colts at Houston Texans. NFL regular season. Broadcast: Prime Video.</desc>
     <category lang="en">Sports</category><category lang="en">Football</category>
